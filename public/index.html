@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DEVIL-MD • Session Generator</title>
+<meta name="description" content="Generate your DEVIL-MD WhatsApp Bot Session ID via Pair Code or QR Code." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="grid-overlay"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <div class="logo">
+        <i class="fa-solid fa-dragon"></i>
+      </div>
+      <div>
+        <h1 class="brand-name">DEVIL<span>-MD</span></h1>
+        <p class="brand-sub">Session Generator</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="https://github.com/LeGenDX96" target="_blank" class="icon-btn" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://whatsapp.com/channel/0029Vb6FgVQEVccBswSu271t" target="_blank" class="icon-btn" title="WhatsApp Channel">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+    <section class="hero">
+      <div class="badge"><span class="dot"></span> Powered by Waseem TechX</div>
+      <h2 class="hero-title">Link Your WhatsApp</h2>
+      <p class="hero-text">
+        Generate your <strong>DEVIL-MD</strong> session ID securely using a Pair Code
+        or QR Code. Fast, private, and reliable.
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="pair" role="tab">
+          <i class="fa-solid fa-link"></i> Pair Code
+        </button>
+        <button class="tab" data-tab="qr" role="tab">
+          <i class="fa-solid fa-qrcode"></i> QR Code
+        </button>
+      </div>
+
+      <!-- Pair Code Panel -->
+      <div class="panel active" id="panel-pair">
+        <label class="field-label" for="phoneInput">WhatsApp Number (with country code)</label>
+        <div class="input-wrap">
+          <i class="fa-solid fa-phone"></i>
+          <input type="tel" id="phoneInput" placeholder="e.g. 923447861706" autocomplete="off" />
+        </div>
+        <p class="hint">Do not include <code>+</code> or spaces.</p>
+        <button class="btn primary" id="pairBtn">
+          <i class="fa-solid fa-bolt"></i> Generate Pair Code
+        </button>
+
+        <div class="result" id="pairResult" hidden>
+          <p class="result-label">Your Pair Code</p>
+          <div class="pair-code" id="pairCode">----</div>
+          <p class="result-info">
+            Open WhatsApp → <strong>Linked Devices</strong> → <strong>Link with phone number</strong> → enter the code.
+          </p>
+          <div class="loader" id="pairLoader" hidden>
+            <div class="spinner"></div>
+            <span>Waiting for connection...</span>
+          </div>
+          <div class="session-box" id="pairSessionBox" hidden>
+            <p class="result-label">Your Session ID</p>
+            <textarea id="pairSession" readonly></textarea>
+            <div class="actions">
+              <button class="btn small" id="copyPairSession"><i class="fa-solid fa-copy"></i> Copy</button>
+              <button class="btn small ghost" id="downloadPairSession"><i class="fa-solid fa-download"></i> Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QR Panel -->
+      <div class="panel" id="panel-qr">
+        <button class="btn primary" id="qrBtn">
+          <i class="fa-solid fa-qrcode"></i> Generate QR Code
+        </button>
+        <div class="qr-wrap" id="qrWrap" hidden>
+          <div class="qr-frame">
+            <img id="qrImage" alt="QR Code" />
+            <div class="scan-line"></div>
+          </div>
+          <p class="result-info">
+            Scan with WhatsApp → <strong>Linked Devices</strong> → <strong>Link a Device</strong>.
+          </p>
+          <div class="loader" id="qrLoader" hidden>
+            <div class="spinner"></div>
+            <span>Waiting for connection...</span>
+          </div>
+          <div class="session-box" id="qrSessionBox" hidden>
+            <p class="result-label">Your Session ID</p>
+            <textarea id="qrSession" readonly></textarea>
+            <div class="actions">
+              <button class="btn small" id="copyQrSession"><i class="fa-solid fa-copy"></i> Copy</button>
+              <button class="btn small ghost" id="downloadQrSession"><i class="fa-solid fa-download"></i> Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Cards -->
+    <section class="info-grid">
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Secure</h3>
+        <p>Your credentials are encrypted and never stored permanently.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-gauge-high"></i></div>
+        <h3>Fast</h3>
+        <p>Get your session ID within seconds using pair code or QR.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-infinity"></i></div>
+        <h3>Reliable</h3>
+        <p>Powered by the latest Baileys multi-device connection.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>
+      © <span id="year"></span> DEVIL-MD • Developed by
+      <a href="https://github.com/LeGenDX96" target="_blank">Waseem TechX</a>
+    </p>
+    <div class="footer-links">
+      <a href="https://github.com/LeGenDX96" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://whatsapp.com/channel/0029Vb6FgVQEVccBswSu271t" target="_blank"><i class="fa-brands fa-whatsapp"></i> Channel</a>
+      <a href="https://wa.me/923447861706" target="_blank"><i class="fa-solid fa-headset"></i> Support</a>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
